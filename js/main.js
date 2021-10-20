@@ -34,7 +34,6 @@ function CreateNewUser(){
 CreateNewUser.getAge = function(birthday){
     this.birthday = birthday;
     currentDate = new Date();
-    console.log(birthday[1],currentDate.getMonth()+1);
     if(birthday[1]<currentDate.getMonth()){
         var currentAge = currentDate.getFullYear() - birthday[2];
         return currentAge;
