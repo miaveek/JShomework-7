@@ -18,7 +18,7 @@
 */
 
 function CreateNewUser(){
-  var   birthday = prompt("Введите вашу дату рождения формате dd.mm.yyyy").split("."),
+  var   birthday = prompt("Введите вашу дату рождения формате dd.mm.yyyy используя '.' как разделитель").split("."),
         firstName = prompt("Введите ваше Имя"),
         lastName  = prompt("Введите вашу Фамилию"),
         newUser = {
@@ -33,9 +33,27 @@ function CreateNewUser(){
     }
 CreateNewUser.getAge = function(birthday){
     this.birthday = birthday;
-    currentDate = new Date(),
-    currentAge = currentDate.getFullYear() - birthday[2];
-    return currentAge;
+    currentDate = new Date();
+    console.log(birthday[1],currentDate.getMonth()+1);
+    if(birthday[1]<currentDate.getMonth()){
+        var currentAge = currentDate.getFullYear() - birthday[2];
+        return currentAge;
+    }
+    else if(birthday[1]==currentDate.getMonth()+1){
+        console.log("сработало 2-е условие");
+        if(birthday[0]<=currentDate.getDate()){
+            var currentAge = currentDate.getFullYear() - birthday[2];
+            return currentAge;
+        }
+        else{
+           var currentAge = currentDate.getFullYear() - birthday[2]-1;
+            return currentAge;
+        }
+    }
+    else{
+        var currentAge = currentDate.getFullYear() - birthday[2]-1;
+        return currentAge;
+    }
 }
 CreateNewUser.getPassword = function(firstName,lastName,birthday){
     this.firstName = firstName,
@@ -64,7 +82,6 @@ var filterBy = (a,b) =>{
     for(var element in arrey ){
         if(typeof arrey[element] != elemType ){
         newArrey.push(arrey[element]);
-        document.write("<p>" + arrey[element]);
         }
     }
     console.log(newArrey);
