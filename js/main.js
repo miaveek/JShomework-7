@@ -17,52 +17,40 @@
 Вывести в консоль результат работы функции createNewUser(), а также функций getAge() и getPassword() созданного объекта.
 */
 
-function CreateNewUser(){
-  var   birthday = prompt("Введите вашу дату рождения формате dd.mm.yyyy используя '.' как разделитель").split("."),
-        firstName = prompt("Введите ваше Имя"),
-        lastName  = prompt("Введите вашу Фамилию"),
-        newUser = {
-            firstName,
-            lastName,
-            birthday,
-            setPass:CreateNewUser.getPassword(firstName,lastName,birthday),
-            age : CreateNewUser.getAge(birthday) ,
-            getLogin(){const setLogin = firstName[0]+lastName; return setLogin.toLocaleLowerCase();}   
-        }
-    return newUser;
+class CreateNewUser{
+        birthday = prompt("Введите вашу дату рождения формате dd.mm.yyyy используя '.' как разделитель").split(".")
+        firstName = prompt("Введите ваше Имя")
+        lastName  = prompt("Введите вашу Фамилию")
+        
+    constructor(birthday,firstName,lastName){
+        birthday,
+        firstName,
+        lastName 
     }
-CreateNewUser.getAge = function(birthday){
-    this.birthday = birthday;
-    currentDate = new Date();
-    if(birthday[1]<currentDate.getMonth()){
-        var currentAge = currentDate.getFullYear() - birthday[2];
-        return currentAge;
+    get login(){return (this.firstName[0]+this.lastName).toLocaleLowerCase()} 
+        
+    getAge(birthday){
+
+           let currentDate = new Date() 
+            birthday = this.birthday
+
+            if(birthday[1] < currentDate.getMonth()){
+                let currentAge = currentDate.getFullYear() - birthday[2];
+                return currentAge
+            }
+            else if(birthday[1]==currentDate.getMonth()+1){
+
+                if(birthday[0]<=currentDate.getDate()){return currentDate.getFullYear() - birthday[2]; }
+                else{return currentDate.getFullYear() - birthday[2]-1; }
+            }
+            else{ return currentDate.getFullYear() - birthday[2]-1}
     }
-    else if(birthday[1]==currentDate.getMonth()+1){
-        console.log("сработало 2-е условие");
-        if(birthday[0]<=currentDate.getDate()){
-            var currentAge = currentDate.getFullYear() - birthday[2];
-            return currentAge;
-        }
-        else{
-           var currentAge = currentDate.getFullYear() - birthday[2]-1;
-            return currentAge;
-        }
-    }
-    else{
-        var currentAge = currentDate.getFullYear() - birthday[2]-1;
-        return currentAge;
+    get password(){
+            return this.firstName[0].toUpperCase()+this.lastName.toLocaleLowerCase()+this.birthday[2];
     }
 }
-CreateNewUser.getPassword = function(firstName,lastName,birthday){
-    this.firstName = firstName,
-    this.lastName = lastName,
-    this.birthday = birthday;
-    var setPass = firstName[0].toUpperCase()+lastName.toLocaleLowerCase()+birthday[2];
-    return setPass;
-}
-var user = new CreateNewUser();
-console.log("name:"+user.firstName,"lastname:"+user.lastName+"login:"+user.getLogin(),"user age :"+user.age,"password:"+user.setPass);
+let user = new CreateNewUser();
+console.log("Пользователь ",user,"Получение логина " +user.login,"Генерация пароля " +user.password,"Возраст "+user.getAge());
 /*
 Реализовать функцию фильтра массива по указанному типу данных.
                    
