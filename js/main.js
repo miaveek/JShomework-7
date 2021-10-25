@@ -66,7 +66,7 @@ var filterBy = (a,b) =>{
     this.arrey = a,
     this.elemType = b;
     let newArrey = [];
-    for(var element in arrey ){
+    for(let element in arrey ){
         if(typeof arrey[element] != elemType ){
         newArrey.push(arrey[element]);
         }
