@@ -16,61 +16,52 @@
 соединенную с фамилией (в нижнем регистре) и годом рождения. (например, Ivan Kravchenko 13.03.1992 → Ikravchenko1992).
 Вывести в консоль результат работы функции createNewUser(), а также функций getAge() и getPassword() созданного объекта.
 */
-
-class CreateNewUser{
-        birthday = prompt("Введите вашу дату рождения формате dd.mm.yyyy используя '.' как разделитель").split(".")
-        firstName = prompt("Введите ваше Имя")
-        lastName  = prompt("Введите вашу Фамилию")
-        
-    constructor(birthday,firstName,lastName){
-        birthday,
-        firstName,
-        lastName 
-    }
-    get login(){return (this.firstName[0]+this.lastName).toLocaleLowerCase()} 
-        
-    getAge(birthday){
-
-           let currentDate = new Date() 
-            birthday = this.birthday
-
-            if(birthday[1] < currentDate.getMonth()){
-                let currentAge = currentDate.getFullYear() - birthday[2];
-                return currentAge
-            }
-            else if(birthday[1]==currentDate.getMonth()+1){
-
-                if(birthday[0]<=currentDate.getDate()){return currentDate.getFullYear() - birthday[2]; }
-                else{return currentDate.getFullYear() - birthday[2]-1; }
-            }
-            else{ return currentDate.getFullYear() - birthday[2]-1}
-    }
-    get password(){
-            return this.firstName[0].toUpperCase()+this.lastName.toLocaleLowerCase()+this.birthday[2];
-    }
+let birthday = prompt("Введите вашу дату рождения формате dd.mm.yyyy используя '.' как разделитель").split(".")
+    firstName = prompt("Введите ваше Имя")
+    lastName  = prompt("Введите вашу Фамилию");
+class CreateNewUser{ 
+constructor(birthday,firstName,lastName){
+    this.birthday =birthday,
+    this.firstName =firstName ,
+    this.lastName =lastName; 
 }
-let user = new CreateNewUser();
+get login(){return (this.firstName[0]+this.lastName).toLocaleLowerCase()} 
+    
+getAge(birthday){
+
+       let currentDate = new Date() 
+        birthday = this.birthday
+
+        if(birthday[1] < currentDate.getMonth()){
+            let currentAge = currentDate.getFullYear() - birthday[2];
+            return currentAge
+        }
+        else if(birthday[1]==currentDate.getMonth()+1){
+
+            if(birthday[0]<=currentDate.getDate()){return currentDate.getFullYear() - birthday[2]; }
+            else{return currentDate.getFullYear() - birthday[2]-1; }
+        }
+        else{ return currentDate.getFullYear() - birthday[2]-1}
+}
+get password(){
+        return this.firstName[0].toUpperCase()+this.lastName.toLocaleLowerCase()+this.birthday[2];
+}
+}
+
+    let user = new CreateNewUser(birthday,firstName,lastName);
 console.log("Пользователь ",user,"Получение логина " +user.login,"Генерация пароля " +user.password,"Возраст "+user.getAge());
-/*
-Реализовать функцию фильтра массива по указанному типу данных.
-                   
+/*             
 Написать функцию filterBy(), которая будет принимать в себя 2 аргумента. Первый аргумент - массив, который будет содержать в себе любые данные, второй аргумент - тип данных.
 Функция должна вернуть новый массив, который будет содержать в себе все данные, которые были переданы в аргумент, за исключением тех, тип которых был передан вторым аргументом.
 То есть, если передать массив ['hello', 'world', 23, '23', null], и вторым аргументом передать 'string', то функция вернет массив [23, null].
 */
-
-var a =['hello', 'world', 23, '23', null],
-    b = "string";
-
-var filterBy = (a,b) =>{
+const a =['hello', 'world', 23, '23', null],
+      b = "string";
+ filterBy = (a,b) =>{
     this.arrey = a,
     this.elemType = b;
-    let newArrey = [];
-    for(let element in arrey ){
-        if(typeof arrey[element] != elemType ){
-        newArrey.push(arrey[element]);
-        }
-    }
-    console.log(newArrey);
+    filterArrey = arrey.filter(function(item){
+        return typeof item != elemType});
+        console.log(filterArrey);
 }
 filterBy(a,b);
